@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "pretest": "node manage-server.js & sleep 5",
+    "test:server": "jest tests/server.test.js --reporters=jest-html-reporter --detectOpenHandles --runInBand",
+    "test:client": "playwright test tests/client.spec.js",
+    "test": "npm run test:server && npm run test:client && pkill -f 'node manage-server.js'",
+    "test:report": "jest tests/server.test.js --reporters=jest-html-reporter && playwright test tests/client.spec.js",
+    "start": "node index.js",
+    "test:client:with-server": "node manage-server.js & sleep 5 && npm run test:client && pkill -f 'node manage-server.js'"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-html-reporter": "^3.10.1",
+    "supertest": "^6.3.4",
+    "@playwright/test": "^1.40.0"
+  }
+}
